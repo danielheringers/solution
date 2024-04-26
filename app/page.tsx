@@ -4,12 +4,14 @@ import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import Clock from "@/public/Countdown Clock.png";
 import Invoice from "@/public/Invoice.png"
+import Monitor from "@/public/Monitor.png"
 import { Card, CardBody } from "@nextui-org/card";
 import { Progress } from "@nextui-org/Progress";
+import StatusSefaz from "@/components/Status/Status";
+
 
 const CardsChart = lazy(() => import("@/components/Cards/Cards"));
 const AreaChartOutbound = lazy(() => import("@/components/Charts/AreaChart"));
-const BarChartOutbound = lazy(() => import("@/components/Charts/BarChart"));
 const LineChartOutbound = lazy(() => import("@/components/Charts/LineChart"));
 const PercentCard = lazy(() => import("@/components/Percent/Percent"));
 
@@ -44,9 +46,9 @@ export default function Home() {
 					<CardBody className="flex flex-row justify-between w-full">
 						<div className="flex flex-col gap-8 border-r border-zinc-700">
 							<div className="flex flex-col pl-14 gap-2">
-								<p className="font-semibold text-xl text-zinc-400">Emissões Anuais</p>
+								<p className="font-semibold text-xl text-zinc-400">Emissões Ultima Hora</p>
 								<div className="flex flex-row items-center gap-2">
-									<p className="font-semibold text-2xl ">25.578.784</p>
+									<p className="font-semibold text-2xl ">35.284</p>
 									<PercentCard value={12.5} status/>
 								</div>
 							</div>
@@ -57,15 +59,13 @@ export default function Home() {
 							<div className="flex flex-col border-b border-zinc-700 gap-1 h-2/4 justify-center">
 								<div className="flex flex-col pl-10 gap-2">
 									<div className="flex flex-row items-center gap-2">
-										<Image src={Invoice} alt="iconTime" width={25}/>
-										<p className="font-semibold text-sm text-zinc-400">Emissões Hoje</p>
+										<Image src={Monitor} alt="iconTime" width={25}/>
+										<p className="font-semibold text-sm text-zinc-400">Status Sefaz</p>
 									</div>
-									<div className="flex flex-row gap-2 items-center">
-										<p className="font-semibold text-xl ">61.875</p>
-										<PercentCard value={12.5} status/>
+									<div className="flex p-2">
+										<StatusSefaz/>
 									</div>
 								</div>
-								<BarChartOutbound/>
 							</div>
 							<div className="flex flex-col gap-1 h-2/4 justify-center">
 								<div className="flex flex-col pl-10 gap-2">
