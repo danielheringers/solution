@@ -1,7 +1,7 @@
 'use client'
 import { Progress } from "@nextui-org/progress";
 import axios from 'axios';
-import NFSeChart from "components/Charts/NFSeChart";
+import { NFSeChart } from "components/Charts/NFSeChart";
 import StatusSefaz from "components/Status/Status";
 import { Suspense, useEffect, useState } from "react";
 

@@ -1,11 +1,10 @@
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
-import { Divider } from "@nextui-org/divider";
+import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Chip } from "@nextui-org/chip";
+import { Divider } from "@nextui-org/divider";
 import { CircularProgress } from "@nextui-org/progress";
 import PercentCard from "../Percent/Percent";
 import AreaChartOutbound from "./AreaChart";
 import TimeChartOutbound from "./TimeChart";
-import React from "react";
 
 interface ICircularProgress {
     Emit: boolean;
@@ -15,7 +14,7 @@ interface ICircularProgress {
     DataGet: any;
 }
 
-const NFSeChart = ({ Emit, Consult, Receive, Print, DataGet }: ICircularProgress) => {
+export const NFSeChart = ({ Emit, Consult, Receive, Print, DataGet }: ICircularProgress) => {
     let CircularValue = 0;
     if (Emit) CircularValue += 25;
     if (Consult) CircularValue += 25;
@@ -80,4 +79,3 @@ const NFSeChart = ({ Emit, Consult, Receive, Print, DataGet }: ICircularProgress
     );
 };
 
-export default NFSeChart;
