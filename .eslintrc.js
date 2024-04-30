@@ -39,9 +39,9 @@ module.exports = {
           { allow: ['info', 'error', 'time', 'timeEnd'] },
       ],
       'class-methods-use-this': 'off',
-      // 'no-relative-import-paths/no-relative-import-paths': [
-      //     'warn',
-      //     { allowSameFolder: true },
-      // ],
+      'no-relative-import-paths/no-relative-import-paths': [
+          'warn',
+          { allowSameFolder: true },
+      ],
   },
 };

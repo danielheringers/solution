@@ -23,7 +23,6 @@ export const NFSeChart = ({ Emit, Consult, Receive, Print, DataGet }: ICircularP
 
     const totalNFeDocs = DataGet ? DataGet.reduce((acc: any, item: { nfe_docs: any; }) => acc + item.nfe_docs, 0) : 0;
     
-
     return (
         <div className="flex flex-col md:flex-row w-full mt-8">
             <Card className="w-full border border-zinc-800" radius="sm"     >
@@ -71,7 +70,6 @@ export const NFSeChart = ({ Emit, Consult, Receive, Print, DataGet }: ICircularP
                         </div>
                         <TimeChartOutbound dataName="NFSe" color="#57c3ff" DataGet={DataGet}/>
                     </div>
-
                 </CardBody>
             </Card>
         </div>
