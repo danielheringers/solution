@@ -35,7 +35,7 @@ const StatusSefaz = ({data = []}: IStatusData) => {
                 <p className="font-semibold text-xl text-zinc-500">Status Sefaz</p>
             </CardHeader>
             <Divider/>
-            <div className="grid w-full gap-2 grid-cols-9 p-6">
+            <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-9 gap-2 p-6">
                 {estados.map(estado => (
                     <div key={estado}>
                         <Chip color="success" variant="dot">{estado}</Chip>
