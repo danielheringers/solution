@@ -6,6 +6,7 @@ import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
+import StarsCanvas from "@/components/StarsBackground/starsbg";
 
 // export const metadata: Metadata = {
 // 	title: {
@@ -51,6 +52,7 @@ export default function RootLayout({
 			  <Navbar />
 			  <main className="container mx-auto max-w-7xl px-6 flex-grow hide-scrollbar ">
 				{children}
+				<StarsCanvas />
 			  </main>
 			  <footer className="w-full flex items-center justify-center ">
 				<Link

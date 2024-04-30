@@ -1,23 +1,72 @@
 'use client'
 import React, { Suspense, useState, useEffect, lazy } from "react";
-import { Button } from "@nextui-org/button";
-import Image from "next/image";
-import Clock from "@/public/Countdown Clock.png";
-import Invoice from "@/public/Invoice.png"
-import Monitor from "@/public/Monitor.png"
-import { Card, CardBody } from "@nextui-org/card";
-import { Progress } from "@nextui-org/Progress";
-import StatusSefaz from "@/components/Status/Status";
+import { Progress } from "@nextui-org/progress";
+import axios from 'axios';
 
+const NFSeChart = lazy(() => import("@/components/Charts/NFSeChart"));
+const StatusSefaz = lazy(() => import("@/components/Status/Status"))
 
-const CardsChart = lazy(() => import("@/components/Cards/Cards"));
-const AreaChartOutbound = lazy(() => import("@/components/Charts/AreaChart"));
-const LineChartOutbound = lazy(() => import("@/components/Charts/LineChart"));
-const PercentCard = lazy(() => import("@/components/Percent/Percent"));
+export default function Home() {
+    const [data, setData] = useState(null);
+    const [statusData, setStatusData] = useState([]);
+    const [isLoading, setLoading] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(300);
+    const totalUpdateTime = 300;
+    const timePassed = totalUpdateTime - timeLeft;
+    const progressPercentage = (timePassed / totalUpdateTime) * 100;
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const config = {
+                    headers: {
+                        'Authorization': 'Bearer OutboundBolado',
+                        'Content-Type': 'application/json'
+                    }
+                };
+                const statusConfig = {
+                    params: {
+                        size: 27
+                    }
+                }
+                const response = await axios.get("https://api.gerenciapp.com.br/nfedocs", config);
+                const statusResponse = await axios.get('https://dfe-service.orbitspot.com/api/wsmonitor/last-provider-status/nfe', statusConfig);
+                setData(response.data);
+                setStatusData(statusResponse.data.data);
+                setTimeLeft(300);
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-export default function Home() {			
-	
+        fetchData();
+        const interval = setInterval(fetchData, 300000);
+        const countdown = setInterval(() => {
+            setTimeLeft((prevTime) => prevTime > 0 ? prevTime - 1 : 0);
+        }, 1000);
+
+        return () => {
+            clearInterval(interval);
+            clearInterval(countdown);
+        };
+    }, []);
+
+    const formattedTimeLeft = `${Math.floor(timeLeft / 60)}m ${timeLeft % 60}s`;
+
+    const formattedData = data ? data.map((ndata: { horario: string | number | Date; nfe_response_time: number; }) => {
+        const date = new Date(ndata.horario);
+        const formattedTime = date.toTimeString().substring(0, 5);
+        const responseTimeInSeconds = (ndata.nfe_response_time / 1000).toFixed(2);
+        return {
+            ...ndata,
+            horario: formattedTime,
+            nfe_response_time: responseTimeInSeconds
+        };
+    }) : [];
+
 	return (
 	<Suspense fallback={    
 		<div className="flex w-full h-screen items-center justify-center hide-scrollbar">
@@ -30,60 +79,27 @@ export default function Home() {
 			/>
 		</div>}>
 		<section className="flex flex-col items-start justify-start gap-2 py-8 md:py-10">
-			<div className="flex flex-row w-full text-left justify-between mb-6">
-				<div className="flex flex-row flex-wrap max-w-sm text-left justify-left mb-6">
-					<h1 className="text-2xl">Welcome Back&nbsp;</h1>
-					<h1 className="text-2xl text-violet-500">Daniel,&nbsp;</h1>
-					<span className="text-sm text-zinc-400">&nbsp;Dashboard Analytics Outbound</span>
-				</div>
-				<Button>Atualizar</Button>
+			<div className="flex flex-row w-80 text-left justify-between">
+                <Progress
+                    size="sm"
+                    radius="sm"
+                    classNames={{
+                        base: "max-w-md",
+                        track: "drop-shadow-md border border-default",
+                        indicator: "bg-gradient-to-r from-pink-500 to-cyan-500",
+                        label: "tracking-wider font-medium text-default-600",
+                        value: "text-foreground/60",
+                    }}
+                    label={`Próxima atualização: ${formattedTimeLeft}`}
+                    value={progressPercentage}
+                    showValueLabel={true}
+                />
 			</div>
+			<NFSeChart Emit={true} Consult={true} Receive={true} Print={true} DataGet={formattedData}/>
 
-			<CardsChart/>
+            <NFSeChart Emit={true} Consult={true} Receive={true} Print={true} DataGet={formattedData}/>
 
-			<div className="flex w-full mt-8">
-				<Card className="w-full border border-zinc-800" radius="sm" shadow="md">
-					<CardBody className="flex flex-row justify-between w-full">
-						<div className="flex flex-col gap-8 border-r border-zinc-700">
-							<div className="flex flex-col pl-14 gap-2">
-								<p className="font-semibold text-xl text-zinc-400">Emissões Ultima Hora</p>
-								<div className="flex flex-row items-center gap-2">
-									<p className="font-semibold text-2xl ">35.284</p>
-									<PercentCard value={12.5} status/>
-								</div>
-							</div>
-							<AreaChartOutbound widthProp={800} heightProp={250} dataName={"NFSe"} color={"#57c3ff"}/>
-							<AreaChartOutbound widthProp={800} heightProp={250} dataName={"NFe"} color={"#6c72ff"}/>
-						</div>
-						<div className="flex flex-col justify-between">
-							<div className="flex flex-col border-b border-zinc-700 gap-1 h-2/4 justify-center">
-								<div className="flex flex-col pl-10 gap-2">
-									<div className="flex flex-row items-center gap-2">
-										<Image src={Monitor} alt="iconTime" width={25}/>
-										<p className="font-semibold text-sm text-zinc-400">Status Sefaz</p>
-									</div>
-									<div className="flex p-2">
-										<StatusSefaz/>
-									</div>
-								</div>
-							</div>
-							<div className="flex flex-col gap-1 h-2/4 justify-center">
-								<div className="flex flex-col pl-10 gap-2">
-									<div className="flex flex-row items-center gap-2">
-										<Image src={Clock} alt="iconTime" width={25}/>
-										<p className="font-semibold text-sm text-zinc-400">Tempo Médio de Resposta</p>
-									</div>
-									<div className="flex flex-row gap-2 items-center">
-										<p className="font-semibold text-xl ">0.3s</p>
-										<PercentCard value={12.5} status/>
-									</div>
-								</div>
-								<LineChartOutbound/>
-							</div>
-						</div>
-					</CardBody>
-				</Card>
-			</div>
+            <StatusSefaz data={statusData} />
 		</section>
 	</Suspense>
 	);
