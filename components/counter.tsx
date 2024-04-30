@@ -1,14 +1,34 @@
 "use client";
 
-import { useState } from "react";
-import { Button } from "@nextui-org/button";
+import React, { useEffect, useState } from 'react';
 
-export const Counter = () => {
-	const [count, setCount] = useState(0);
+interface IAnimatedCounter{
+	max: number
+	duration: number
+}
 
-	return (
-		<Button radius="full" onPress={() => setCount(count + 1)}>
-			Count is {count}
-		</Button>
-	);
+const AnimatedCounter = ({ max, duration }: IAnimatedCounter) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const end = duration;
+    const incrementTime = (end / max) / 100;
+
+    const timer = setInterval(() => {
+      start += 1;
+      setCount(start);
+      if (start === max) clearInterval(timer);
+    }, incrementTime);
+
+    return () => clearInterval(timer);
+  }, [max, duration]);
+
+  return (
+    <span className="font-semibold text-xl">
+      {count}
+    </span>
+  );
 };
+
+export default AnimatedCounter;

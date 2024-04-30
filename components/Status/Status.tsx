@@ -1,19 +1,49 @@
-import { Chip } from "@nextui-org/chip";
-import { Card, CardHeader, CardBody } from "@nextui-org/card";
+"use client"
+import { useEffect, useState } from 'react';
+import { Chip } from "@nextui-org/react";
+import { Card, CardHeader, Divider } from "@nextui-org/react";
 
-const StatusSefaz = () => {
-    // Lista de siglas dos estados
-    const estados = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
-
-    return (
-        <div className="grid max-w-sm max-h-96 gap-2 grid-rows-1">
-            {estados.map(estado => (
-                <div key={estado}>
-                    <Chip color="success" variant="dot">{estado}</Chip>
-                </div>
-            ))}
-        </div>
-    );
+interface IProviderStatus {
+    dfe: string;
+    provider_name: string;
+    cStat: string;
 }
 
+interface IStatusData {
+    data: IProviderStatus[];
+}
+
+const StatusSefaz = ({data = []}: IStatusData) => {
+    const [statusColors, setStatusColors] = useState<{ [key: string]: string }>({});
+
+    const estados = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
+    
+    useEffect(() => {
+        const newStatusColors = {};
+        data.forEach((item) => {
+            if (item.dfe === 'nfe') {
+                newStatusColors[item.provider_name] = item.cStat === "107" ? 'success' : 'danger';
+            }
+        });
+        setStatusColors(newStatusColors);
+    }, [data]);
+
+    return (
+        <Card className="flex w-full border border-zinc-800 p-2" radius="sm">
+            <CardHeader>
+                <p className="font-semibold text-xl text-zinc-500">Status Sefaz</p>
+            </CardHeader>
+            <Divider/>
+            <div className="grid w-full gap-2 grid-cols-9 p-6">
+                {estados.map(estado => (
+                    <div key={estado}>
+                        <Chip color={statusColors[estado] || 'warning'} variant="dot">{estado}</Chip>
+                    </div>
+                ))}
+            </div>
+        </Card>
+    );
+};
+
 export default StatusSefaz;
+
