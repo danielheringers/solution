@@ -29,7 +29,7 @@ const StarsCanvas = () => (
   <div className='w-full h-auto fixed inset-0 z-[20] ' style={{ pointerEvents: 'none' }}>
     <Canvas camera={{position: [0, 0, 1]}} style={{ pointerEvents: 'none' }}>
       <Suspense fallback={null}>
-        <StarsBackground/>
+        <StarsBackground style={{ pointerEvents: 'none' }}/>
       </Suspense>
     </Canvas>
 
