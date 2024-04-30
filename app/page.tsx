@@ -2,9 +2,9 @@
 
 import { Progress } from "@nextui-org/progress";
 import axios from 'axios';
-import { NFSeChart } from "components/Charts/NFSeChart";
-import StatusSefaz from "components/Status/Status";
 import { Suspense, useEffect, useState } from "react";
+import { NFSeChart } from "../components/Charts/NFSeChart";
+import StatusSefaz from "../components/Status/Status";
 
 // const NFSeChart = lazy(() => import("@/components/Charts/NFSeChart"));
 // const StatusSefaz = lazy(() => import("@/components/Status/Status"))
