@@ -2,7 +2,7 @@
 
 import { Area, AreaChart, CartesianGrid, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, consistent-return
 const CustomTooltip = ({active, payload, label}) => {
     if(active && payload && payload.length){
         return(
