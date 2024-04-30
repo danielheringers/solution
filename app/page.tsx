@@ -2,8 +2,9 @@
 import React, { Suspense, useState, useEffect, lazy } from "react";
 import { Progress } from "@nextui-org/progress";
 import axios from 'axios';
-import NFSeChart from "@/components/Charts/NFSeChart";
-import StatusSefaz from "@/components/Status/Status";
+
+const NFSeChart = lazy(() => import("@/components/Charts/NFSeChart.jsx"));
+const StatusSefaz = lazy(() => import("@/components/Status/Status"))
 
 export default function Home() {
     const [data, setData] = useState(null);

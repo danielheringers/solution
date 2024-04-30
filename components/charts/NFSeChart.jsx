@@ -6,22 +6,22 @@ import PercentCard from "../Percent/Percent";
 import AreaChartOutbound from "./AreaChart";
 import TimeChartOutbound from "./TimeChart";
 
-interface ICircularProgress {
-    Emit: boolean;
-    Consult: boolean;
-    Receive: boolean;
-    Print: boolean;
-    DataGet: any;
-}
+// interface ICircularProgress {
+//     Emit: boolean;
+//     Consult: boolean;
+//     Receive: boolean;
+//     Print: boolean;
+//     DataGet: any;
+// }
 
-const NFSeChart = ({ Emit, Consult, Receive, Print, DataGet }: ICircularProgress) => {
+const NFSeChart = ({ Emit, Consult, Receive, Print, DataGet }) => {
     let CircularValue = 0;
     if (Emit) CircularValue += 25;
     if (Consult) CircularValue += 25;
     if (Receive) CircularValue += 25;
     if (Print) CircularValue += 25;
 
-    const totalNFeDocs = DataGet ? DataGet.reduce((acc: any, item: { nfe_docs: any; }) => acc + item.nfe_docs, 0) : 0;
+    const totalNFeDocs = DataGet ? DataGet.reduce((acc, item) => acc + item.nfe_docs, 0) : 0;
     
 
     return (
