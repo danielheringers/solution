@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "richie5um2.vscode-sort-json",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "johnpapa.vscode-peacock",
+    ]
+}

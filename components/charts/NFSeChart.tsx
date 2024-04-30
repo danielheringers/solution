@@ -5,6 +5,7 @@ import { CircularProgress } from "@nextui-org/progress";
 import PercentCard from "../Percent/Percent";
 import AreaChartOutbound from "./AreaChart";
 import TimeChartOutbound from "./TimeChart";
+import React from "react";
 
 interface ICircularProgress {
     Emit: boolean;

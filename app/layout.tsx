@@ -1,12 +1,13 @@
-import "@/styles/globals.css";
-import Head from 'next/head'; 
-import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
-import { Providers } from "./providers";
-import { Navbar } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
+import { Navbar } from "@nextui-org/navbar";
 import clsx from "clsx";
-import StarsCanvas from "@/components/StarsBackground/starsbg";
+import StarsCanvas from "components/StarsBackground/starsbg";
+import { fontSans } from "config/fonts";
+import { siteConfig } from "config/site";
+import Head from 'next/head';
+import "styles/globals.css";
+import { Providers } from "./providers";
+
 
 // export const metadata: Metadata = {
 // 	title: {

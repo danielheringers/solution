@@ -1,8 +1,7 @@
 
-import React from "react";
 import Image from "next/image";
-import UpArrow from "@/public/UpRight.png"
-import DownArrow from "@/public/Down Right.png"
+import UpArrow from "public/UpRight.png";
+import React from "react";
 
 interface PercentCardProp{
     value: number;
