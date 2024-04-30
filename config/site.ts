@@ -1,29 +1,26 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-	name: "Outbound Solution",
-	description: "The Definitive Solution for Manager Product",
+	name: "Outbound",
+	description: "A Api Definitiva Para Emissão de Notas Fiscais.",
 	navItems: [
 		{
 			label: "Home",
 			href: "/",
 		},
 		{
-		label: "About",
-		href: "/about",
+		label: "Monitor",
+		href: "/monitor",
 		}
 	],
 	navMenuItems: [
 		{
-			label: "Dashboard",
-			href: "/dashboard",
+			label: "Home",
+			href: "/",
 		},
+		{
+		label: "Monitor",
+		href: "/monitor",
+		}
 	],
-	links: {
-		github: "",
-		twitter: "",
-		docs: "",
-		discord: "",
-    sponsor: ""
-	},
 };
