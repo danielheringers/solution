@@ -1,7 +1,7 @@
 "use client"
+
+import { Card, CardHeader, Chip, Divider } from "@nextui-org/react";
 import { useEffect, useState } from 'react';
-import { Chip } from "@nextui-org/react";
-import { Card, CardHeader, Divider } from "@nextui-org/react";
 
 interface IProviderStatus {
     dfe: string;
@@ -14,8 +14,9 @@ interface IStatusData {
 }
 
 const StatusSefaz = ({data = []}: IStatusData) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [statusColors, setStatusColors] = useState<{ [key: string]: string }>({});
-
+    
     const estados = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
     
     useEffect(() => {
@@ -37,7 +38,7 @@ const StatusSefaz = ({data = []}: IStatusData) => {
             <div className="grid w-full gap-2 grid-cols-9 p-6">
                 {estados.map(estado => (
                     <div key={estado}>
-                        <Chip color={statusColors[estado] || 'warning'} variant="dot">{estado}</Chip>
+                        <Chip color="success" variant="dot">{estado}</Chip>
                     </div>
                 ))}
             </div>

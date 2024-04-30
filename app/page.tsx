@@ -1,14 +1,18 @@
 'use client'
-import React, { Suspense, useState, useEffect, lazy } from "react";
+
 import { Progress } from "@nextui-org/progress";
 import axios from 'axios';
+import { Suspense, useEffect, useState } from "react";
+import { NFSeChart } from "../components/Charts/NFSeChart";
+import StatusSefaz from "../components/Status/Status";
 
-const NFSeChart = lazy(() => import("@/components/Charts/NFSeChart"));
-const StatusSefaz = lazy(() => import("@/components/Status/Status"))
+// const NFSeChart = lazy(() => import("@/components/Charts/NFSeChart"));
+// const StatusSefaz = lazy(() => import("@/components/Status/Status"))
 
 export default function Home() {
     const [data, setData] = useState(null);
     const [statusData, setStatusData] = useState([]);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isLoading, setLoading] = useState(false);
     const [timeLeft, setTimeLeft] = useState(300);
     const totalUpdateTime = 300;
@@ -55,7 +59,7 @@ export default function Home() {
     }, []);
 
     const formattedTimeLeft = `${Math.floor(timeLeft / 60)}m ${timeLeft % 60}s`;
-    //@ts-ignore
+    // @ts-ignore
     const formattedData = data ? data.map((ndata: { horario: string | number | Date; nfe_response_time: number; }) => {
         const date = new Date(ndata.horario);
         const formattedTime = date.toTimeString().substring(0, 5);
@@ -92,12 +96,12 @@ export default function Home() {
                     }}
                     label={`Próxima atualização: ${formattedTimeLeft}`}
                     value={progressPercentage}
-                    showValueLabel={true}
+                    showValueLabel
                 />
 			</div>
-			<NFSeChart Emit={true} Consult={true} Receive={true} Print={true} DataGet={formattedData}/>
+			<NFSeChart Emit Consult Receive Print DataGet={formattedData}/>
 
-            <NFSeChart Emit={true} Consult={true} Receive={true} Print={true} DataGet={formattedData}/>
+            <NFSeChart Emit Consult Receive Print DataGet={formattedData}/>
 
             <StatusSefaz data={statusData} />
 		</section>

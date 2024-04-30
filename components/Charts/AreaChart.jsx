@@ -1,6 +1,8 @@
-import { AreaChart, Area, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+/* eslint-disable react/prop-types */
+import { Area, AreaChart, CartesianGrid, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
         return (
