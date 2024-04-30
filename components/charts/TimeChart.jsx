@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 
-import { AreaChart, Area, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { Area, AreaChart, CartesianGrid, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
-const data = [{name: 'Response', Time: 0.3, max: 2, Hour: "12:45"}, {name: 'Response', Time: 0.3, Hour: "13:00"}, {name: 'Response', Time: 0.3, Hour: "13:15"}, {name: 'Response', Time: 0.3, Hour: "13:30"}, {name: 'Response', Time: 0.3, Hour: "13:30"}];
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CustomTooltip = ({active, payload, label}) => {
     if(active && payload && payload.length){
         return(
@@ -15,6 +16,7 @@ const CustomTooltip = ({active, payload, label}) => {
     }
 }
 const TimeChartOutbound = ({DataGet, color, dataName}) => {
+    // eslint-disable-next-line react/prop-types
     const last24Data = DataGet.slice(-24);
     
     return(

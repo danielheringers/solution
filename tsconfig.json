@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": false,
     "incremental": true,
-    "module": "ES6",
+    "module": "CommonJS",
     "noFallthroughCasesInSwitch": false,
     "noImplicitAny": false,
     "removeComments": true,
@@ -35,10 +35,12 @@
     ]
   },
   "include": [
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx"
+    "app/**/*",
+    "components/**/*",
+    "config/**/*",
+    "public/*.(png|jpg)",
+    ".d.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

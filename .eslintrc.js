@@ -1,8 +1,8 @@
 module.exports = {
   extends: ['next', 'airbnb', 'airbnb-typescript', 'prettier'],
   parserOptions: {
-      sourceType: 'module',
       ecmaVersion: 'latest',
+      project: 'tsconfig.json',
   },
   plugins: [
       'prettier',
@@ -29,6 +29,11 @@ module.exports = {
       'no-param-reassign': 'warn',
       'consistent-return': 'warn',
       'linebreak-style': 0,
+      'react/react-in-jsx-scope': 'off',
+      'react/jsx-props-no-spreading': 'off',
+      'react/require-default-props': 'off',
+      'react/function-component-definition': 'off',
+      'react/no-unknown-property': 'warn',
       'no-console': [
           'error',
           { allow: ['info', 'error', 'time', 'timeEnd'] },

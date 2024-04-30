@@ -33,19 +33,18 @@ export const NFSeChart = ({ Emit, Consult, Receive, Print, DataGet }: ICircularP
                         size="md"
                         value={CircularValue}
                         color={    
-                            CircularValue <= 25 ? "danger" :
-                            CircularValue <= 75 ? "warning" :
-                            "success"
+                            // eslint-disable-next-line no-nested-ternary
+                            CircularValue <= 25 ? "danger" : CircularValue <= 75 ? "warning" : "success"
                         } 
                         valueLabel="NFSe"
                         showValueLabel
                     />
                     <Divider orientation="vertical" />
                     <div className="flex gap-2 flex-wrap">
-                        <Chip color={Emit == false ? "danger" : "success"} variant="dot">Emissão</Chip>
-                        <Chip color={Consult == false ? "danger" : "success"} variant="dot">Consulta</Chip>
-                        <Chip color={Receive == false ? "danger" : "success"} variant="dot">Recepção Evento</Chip>
-                        <Chip color={Print == false ? "danger" : "success"} variant="dot">Impressão Danfe</Chip>
+                        <Chip color={Emit === false ? "danger" : "success"} variant="dot">Emissão</Chip>
+                        <Chip color={Consult === false ? "danger" : "success"} variant="dot">Consulta</Chip>
+                        <Chip color={Receive === false ? "danger" : "success"} variant="dot">Recepção Evento</Chip>
+                        <Chip color={Print === false ? "danger" : "success"} variant="dot">Impressão Danfe</Chip>
                     </div>
                 </CardHeader>
                 <Divider />
@@ -56,10 +55,10 @@ export const NFSeChart = ({ Emit, Consult, Receive, Print, DataGet }: ICircularP
                             <div className="flex flex-row items-center gap-2">
                                 <p className="font-semibold text-xl ">{totalNFeDocs}</p>
                                 {/* <AnimatedCounter max={totalNFeDocs} duration={1}/> */}
-                                <PercentCard value={12.5} status/>
+                                <PercentCard value={12.5}/>
                             </div>
                         </div>
-                        <AreaChartOutbound dataName="NFSe" color="#57c3ff" dataGet={DataGet} dataKeyName={"nfe_docs"} />
+                        <AreaChartOutbound dataName="NFSe" color="#57c3ff" dataGet={DataGet} dataKeyName="nfe_docs" />
                     </div>
                     <Divider orientation="vertical" />
                     <div className="w-full md:w-3/4 lg:w-1/2 mx-auto">
@@ -67,7 +66,7 @@ export const NFSeChart = ({ Emit, Consult, Receive, Print, DataGet }: ICircularP
                             <p className="font-semibold text-xl text-zinc-500">Tempo Resposta</p>
                             <div className="flex flex-row items-center gap-2">
                                 <p className="font-semibold text-xl ">0.3s</p>
-                                <PercentCard value={12.5} status/>
+                                <PercentCard value={12.5}/>
                             </div>
                         </div>
                         <TimeChartOutbound dataName="NFSe" color="#57c3ff" DataGet={DataGet}/>
