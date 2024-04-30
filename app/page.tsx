@@ -55,7 +55,7 @@ export default function Home() {
     }, []);
 
     const formattedTimeLeft = `${Math.floor(timeLeft / 60)}m ${timeLeft % 60}s`;
-
+    //@ts-ignore
     const formattedData = data ? data.map((ndata: { horario: string | number | Date; nfe_response_time: number; }) => {
         const date = new Date(ndata.horario);
         const formattedTime = date.toTimeString().substring(0, 5);
