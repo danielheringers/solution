@@ -15,17 +15,13 @@ const ParticlesContainer = () => {
         });
     }, []);
 
-    const particlesLoaded = () => {
-        
-    };
-
     if (!init) return null;
 
     return (
         <Particles
             id="tsparticles"
             className="w-full h-4/5 absolute"
-            loaded={particlesLoaded}
+            
             options={{
                 fullScreen: { enable: false },
                 background: {
@@ -36,7 +32,7 @@ const ParticlesContainer = () => {
                     events: {
                         onClick: { enable: true, mode: 'push' },
                         onHover: { enable: true, mode: 'repulse' },
-                        resize: true
+                        resize: {}
                     },
                     modes: {
                         push: { quantity: 4 },
@@ -60,7 +56,7 @@ const ParticlesContainer = () => {
                         speed: 1
                     },
                     number: {
-                        density: { enable: true, area: 800 },
+                        density: { enable: true },
                         value: 80
                     },
                     opacity: { value: 0.5 },
