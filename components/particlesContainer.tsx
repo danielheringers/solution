@@ -15,8 +15,8 @@ const ParticlesContainer = () => {
         });
     }, []);
 
-    const particlesLoaded = (container) => {
-        console.log("Particles loaded:", container);
+    const particlesLoaded = () => {
+        
     };
 
     if (!init) return null;
