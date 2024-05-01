@@ -1,6 +1,7 @@
 'use client'
 
 import { Progress } from "@nextui-org/progress";
+import { Button, Card, CardBody, Input } from "@nextui-org/react";
 import NewCard from "components/Card/Card";
 import ParticlesContainer from "components/particlesContainer";
 import Image from "next/image";
@@ -8,7 +9,6 @@ import Clientes from "public/clientes.webp";
 import { Suspense } from "react";
 
 export default function Home() {
-
 
 	return (
 	<Suspense fallback={    
@@ -42,22 +42,23 @@ export default function Home() {
 				</div>
 			</div>
 		</section>
-		<section className="absolute left-0 w-screen py-10 bg-[#F3F3F3]">
+		<section className="absolute top-[100vh] left-0 w-screen py-10 bg-[#F3F3F3]">
 			<div className="w-full max-w-6xl mx-auto px-4">
-				<div className="flex items-center justify-between gap-4">
-					<div className="flex flex-col w-1/2 gap-4">
-						<h2 className="text-4xl font-bold text-[#11181C]">Clientes</h2>
-						<p className="text-xl text-[#000]">
+				<div className="flex flex-col md:flex-row items-center justify-between gap-4">
+					<div className="flex flex-col w-full md:w-1/2 gap-4">
+						<h2 className="text-2xl lg:text-4xl font-bold text-[#11181C]">Clientes</h2>
+						<p className="text-base lg:text-xl text-[#000]">
 							Empresas que alavancaram seus negócios com a API de integração de documentos fiscais do Outbound.
 						</p>
 					</div>
-					<div className="w-1/2">
+					<div className="w-full md:w-1/2">
 						<Image src={Clientes} alt="clientes" layout="responsive" width={600} height={300}/>
 					</div>
 				</div>
 			</div>
 		</section>
-		<section className="flex flex-col gap-16 mt-[40rem]">
+
+		<section className="flex flex-col gap-16 mt-[20rem]">
 			<div className="flex container mx-auto px-4 justify-center">
 				<h2 className="text-4xl font-bold mb-4">Nossos Números</h2>
 			</div>
@@ -67,14 +68,22 @@ export default function Home() {
 				<NewCard dataNumbers="Todos os Estados" dataText="E Distrito Federal"/>
 			</div>
 		</section>
-		<section className="flex flex-col gap-16 mt-24">
+		<section className="flex h-[600px] flex-col gap-16 mt-24">
 			<div className="flex container mx-auto px-4 justify-center">
-				<h2 className="text-4xl font-bold mb-4">Nossos Números</h2>
+				<h2 className="text-2xl sm:text-4xl font-bold mb-4">Entre em Contato</h2>
 			</div>
-			<div className="flex flex-col items-center justify-between h-[550px] w-full lg:flex-row lg:justify-between lg:h-[150px]">
-				<NewCard dataNumbers="107 Milhões" dataText="De Documentos Emitidos em 2023"/>
-				<NewCard dataNumbers="1720 Municipios" dataText="Homologados"/>
-				<NewCard dataNumbers="Todos os Estados" dataText="E Distrito Federal"/>
+			<div className="flex flex-col items-center justify-between h-[600px] w-full lg:flex-row lg:justify-center lg:h-[355px]">
+				<Card className="z-50">
+					<CardBody className="flex flex-col justify-between items-center w-[300px] h-[355px] gap-4 z-50 lg:w-[400px]">
+						<Input type="name" label="Nome" placeholder="Digite Seu Nome" />
+						<Input type="cellphone" label="Telefone" placeholder="Digite Seu Telefone" />
+      					<Input type="email" label="E-mail" placeholder="Digite Seu email" />
+						<Input type="company" label="Empresa" placeholder="Digite Sua Empresa" />
+						<Button className="w-[10rem]" color="primary" radius="sm">
+							Enviar
+						</Button>
+					</CardBody>
+				</Card>
 			</div>
 		</section>
 	</Suspense>

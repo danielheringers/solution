@@ -29,7 +29,7 @@ export default function Monitor() {
                     params: {
                         size: 27
                     }
-                }
+                };
                 const response = await axios.get("https://api.gerenciapp.com.br/nfedocs", config);
                 const statusResponse = await axios.get('https://dfe-service.orbitspot.com/api/wsmonitor/last-provider-status/nfe', statusConfig);
                 setData(response.data);
