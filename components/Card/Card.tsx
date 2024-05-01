@@ -7,7 +7,7 @@ interface ICard{
 
 export default function NewCard({dataNumbers, dataText}: ICard) {
     return(
-        <Card className="w-[280px] h-[150px] z-50" >
+        <Card className="w-[280px] h-[150px] z-40" >
             <CardBody className="flex items-center justify-center text-2xl">
             <p>{dataNumbers}</p>
             </CardBody>

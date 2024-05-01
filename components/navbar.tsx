@@ -10,7 +10,7 @@ import { ThemeSwitch } from "./theme-switch";
 export const Navbar = () => {
     const pathname = usePathname();
     return (
-        <NextUINavbar maxWidth="xl" position="sticky" isBordered>
+        <NextUINavbar maxWidth="xl" position="sticky" isBordered className="z-50">
             <NavbarBrand as="li" className="gap-3 max-w-fit">
                 <a className="flex justify-start items-center gap-1" href="/">
                     <Image src={LogoDark} alt="logo" width={150} height={33}/>
