@@ -1,4 +1,5 @@
 // import { Navbar } from "@nextui-org/navbar";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import clsx from "clsx";
 import StarsCanvas from "components/StarsBackground/starsbg";
 import { Navbar } from "components/navbar";
@@ -55,6 +56,7 @@ export default function RootLayout({
 			  <main className="container mx-auto max-w-7xl px-6 flex-grow hide-scrollbar ">
 				{children}
 				<StarsCanvas />
+				<SpeedInsights />
 			  </main>
 			</div>
 		  </Providers>
