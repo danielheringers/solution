@@ -59,7 +59,7 @@ export default function Home() {
 					<div>
 						<h2 className="text-3xl font-bold mb-4">Nossos Números</h2>
 					</div>
-                    <div className="container flex flex-col items-center sm:flex-row sm:justify-between">
+                    <div className="container flex flex-col gap-4 items-center sm:flex-row sm:justify-between">
                         <NewCard dataNumbers="107 Milhões" dataText="De Documentos Emitidos em 2023"/>
                         <NewCard dataNumbers="1720 Municipios" dataText="Homologados"/>
                         <NewCard dataNumbers="Todos os Estados" dataText="E Distrito Federal"/>
