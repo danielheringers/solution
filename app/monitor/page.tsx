@@ -15,18 +15,35 @@ export default function Monitor() {
     const timePassed = totalUpdateTime - timeLeft;
     const progressPercentage = (timePassed / totalUpdateTime) * 100;
 
+    interface MetricData {
+        horario: string
+        nfe_docs: number
+        nfe_response_time: number
+        
+    }
+    
+
     useEffect(() => {
+        const mockData: MetricData[] = Array.from({ length: 16 }, (_, index) => ( 
+        {        
+            nfe_docs: Math.floor(Math.random() * 100),
+            horario: `Hour ${index}`,
+            nfe_response_time: Math.floor(Math.random() * 20 + 1) / 10,
+        }
+                
+        ));
+        
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const config = {
-                    headers: {
-                        'Authorization': 'Bearer OutboundBolado',
-                        'Content-Type': 'application/json'
-                    }
-                };
-                const response = await axios.get("https://api.gerenciapp.com.br/nfedocs", config);
-                setData(response.data);
+                // const config = {
+                //     headers: {
+                //         'Authorization': 'Bearer OutboundBolado',
+                //         'Content-Type': 'application/json'
+                //     }
+                // };
+                // const response = await axios.get("https://api.gerenciapp.com.br/nfedocs", config);
+                setData(mockData);
                 setTimeLeft(300);
             } catch (error) {
                 console.error('Erro na requisição NFedocs:', error);
@@ -74,7 +91,7 @@ export default function Monitor() {
     const formattedData = data ? data.map((ndata: { horario: string | number | Date; nfe_response_time: number; }) => {
         const date = new Date(ndata.horario);
         const formattedTime = date.toTimeString().substring(0, 5);
-        const responseTimeInSeconds = (ndata.nfe_response_time / 1000).toFixed(2);
+        const responseTimeInSeconds = (ndata.nfe_response_time).toFixed(2);
         return {
             ...ndata,
             horario: formattedTime,
