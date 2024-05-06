@@ -25,35 +25,55 @@ export default function Monitor() {
                         'Content-Type': 'application/json'
                     }
                 };
+                const response = await axios.get("https://api.gerenciapp.com.br/nfedocs", config);
+                setData(response.data);
+                setTimeLeft(300);
+            } catch (error) {
+                console.error('Erro na requisição NFedocs:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+    
+        fetchData();
+    
+        return () => {
+            // Cleanup function
+        };
+    }, []);
+    
+    useEffect(() => {
+        const fetchStatusData = async () => {
+            try {
                 const statusConfig = {
                     params: {
                         size: 27
                     }
                 };
-                const response = await axios.get("https://api.gerenciapp.com.br/nfedocs", config);
                 const statusResponse = await axios.get('https://dfe-service.orbitspot.com/api/wsmonitor/last-provider-status/nfe', statusConfig);
-                setData(response.data);
                 setStatusData(statusResponse.data.data);
-                setTimeLeft(300);
             } catch (error) {
-                console.error('Erro na requisição:', error);
-            } finally {
-                setLoading(false);
+                console.error('Erro na requisição StatusData:', error);
             }
         };
-
-        fetchData();
-        const interval = setInterval(fetchData, 300000);
+    
+        const interval = setInterval(() => {
+            fetchStatusData();
+            setTimeLeft((prevTime) => prevTime > 0 ? prevTime - 1 : 0);
+        }, 300000);
+    
         const countdown = setInterval(() => {
             setTimeLeft((prevTime) => prevTime > 0 ? prevTime - 1 : 0);
         }, 1000);
-
+    
+        fetchStatusData();
+    
         return () => {
             clearInterval(interval);
             clearInterval(countdown);
         };
     }, []);
-
+    
     const formattedTimeLeft = `${Math.floor(timeLeft / 60)}m ${timeLeft % 60}s`;
     // @ts-ignore
     const formattedData = data ? data.map((ndata: { horario: string | number | Date; nfe_response_time: number; }) => {
