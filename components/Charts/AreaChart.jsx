@@ -18,7 +18,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 }
 
 const AreaChartOutbound = ({ dataName, color, dataGet, dataKeyName }) => {
-    const last24Data = dataGet.slice(-24);
+    const last24Data = dataGet;
     return (
         <ResponsiveContainer width="100%" height={250}>
             <AreaChart data={last24Data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>

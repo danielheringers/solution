@@ -2,7 +2,7 @@ import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Chip } from "@nextui-org/chip";
 import { Divider } from "@nextui-org/divider";
 import { CircularProgress } from "@nextui-org/progress";
-import PercentCard from "../Percent/Percent";
+import PercentCard from "components/Percent/Percent";
 import AreaChartOutbound from "./AreaChart";
 import TimeChartOutbound from "./TimeChart";
 

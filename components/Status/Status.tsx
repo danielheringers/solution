@@ -7,6 +7,7 @@ interface IProviderStatus {
     dfe: string;
     provider_name: string;
     cStat: string;
+    emission_type: string;
 }
 
 interface IStatusData {
@@ -23,7 +24,7 @@ const StatusSefaz = ({data = []}: IStatusData) => {
         const newStatusColors = {};
         data.forEach((item) => {
             if (item.dfe === 'nfe') {
-                newStatusColors[item.provider_name] = item.cStat === "107" ? 'success' : 'danger';
+                newStatusColors[item.provider_name] = item.emission_type === "normal" ? 'success' : 'danger';
             }
         });
         setStatusColors(newStatusColors);
@@ -38,12 +39,12 @@ const StatusSefaz = ({data = []}: IStatusData) => {
             <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-9 gap-2 p-6">
                 {estados.map(estado => (
                     <div key={estado}>
-                        <Chip color="success" variant="dot">{estado}</Chip>
+                        <Chip color={statusColors[estado] || 'default'} variant="dot">{estado}</Chip>
                     </div>
                 ))}
             </div>
         </Card>
-    );
+    );    
 };
 
 export default StatusSefaz;

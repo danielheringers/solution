@@ -35,6 +35,7 @@ export default function Monitor() {
                 setData(response.data);
                 setStatusData(statusResponse.data.data);
                 setTimeLeft(300);
+                console.log('response: ', response);
             } catch (error) {
                 console.error('Erro na requisição:', error);
             } finally {
