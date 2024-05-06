@@ -1,5 +1,3 @@
-"use client"
-
 import { Card, CardHeader, Chip, Divider } from "@nextui-org/react";
 import { useEffect, useState } from 'react';
 
@@ -14,14 +12,15 @@ interface IStatusData {
     data: IProviderStatus[];
 }
 
+type ChipColor = "danger" | "default" | "primary" | "secondary" | "success" | "warning";
+
 const StatusSefaz = ({data = []}: IStatusData) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [statusColors, setStatusColors] = useState<{ [key: string]: string }>({});
+    const [statusColors, setStatusColors] = useState<{ [key: string]: ChipColor }>({});
     
     const estados = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
     
     useEffect(() => {
-        const newStatusColors = {};
+        const newStatusColors: { [key: string]: ChipColor } = {};
         data.forEach((item) => {
             if (item.dfe === 'nfe') {
                 newStatusColors[item.provider_name] = item.emission_type === "normal" ? 'success' : 'danger';
@@ -48,4 +47,3 @@ const StatusSefaz = ({data = []}: IStatusData) => {
 };
 
 export default StatusSefaz;
-
