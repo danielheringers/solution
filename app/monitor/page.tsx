@@ -32,17 +32,10 @@ export default function Monitor() {
                 console.error('Erro na requisição NFedocs:', error);
             } finally {
                 setLoading(false);
+                
             }
         };
     
-        fetchData();
-    
-        return () => {
-            // Cleanup function
-        };
-    }, []);
-    
-    useEffect(() => {
         const fetchStatusData = async () => {
             try {
                 const statusConfig = {
@@ -57,7 +50,11 @@ export default function Monitor() {
             }
         };
     
+        fetchData();
+        fetchStatusData();
+    
         const interval = setInterval(() => {
+            fetchData();
             fetchStatusData();
             setTimeLeft((prevTime) => prevTime > 0 ? prevTime - 1 : 0);
         }, 300000);
@@ -66,13 +63,11 @@ export default function Monitor() {
             setTimeLeft((prevTime) => prevTime > 0 ? prevTime - 1 : 0);
         }, 1000);
     
-        fetchStatusData();
-    
         return () => {
             clearInterval(interval);
             clearInterval(countdown);
         };
-    }, []);
+    }, []);    
     
     const formattedTimeLeft = `${Math.floor(timeLeft / 60)}m ${timeLeft % 60}s`;
     // @ts-ignore
