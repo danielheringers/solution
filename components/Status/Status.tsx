@@ -1,3 +1,5 @@
+'use client'
+
 import { Card, CardHeader, Chip, Divider } from "@nextui-org/react";
 import { useEffect, useState } from 'react';
 
@@ -23,7 +25,7 @@ const StatusSefaz = ({data = []}: IStatusData) => {
         const newStatusColors: { [key: string]: ChipColor } = {};
         data.forEach((item) => {
             if (item.dfe === 'nfe') {
-                newStatusColors[item.provider_name] = item.emission_type === "normal" ? 'success' : 'danger';
+                newStatusColors[item.provider_name] = item.emission_type === 'normal' ? 'success' : 'danger';
             }
         });
         setStatusColors(newStatusColors);
